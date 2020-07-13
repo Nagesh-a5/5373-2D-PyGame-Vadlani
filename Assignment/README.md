@@ -2,5 +2,5 @@
 
 |   #   | Folder Link | Assignment Description |
 | :---: | ----------- | ---------------------- |
-|   1   |    A03      | Create a simple Tkinter file|
-|       |             |                        |
+|   1   |    A03      | Dev Setup and First Program|
+|   2   |    A04      | Simple Second Program                       |
