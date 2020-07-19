@@ -18,5 +18,5 @@ This program uses the pygame library to move a car image around window while it 
  
  ### Instructions to run:
  
- -> run game by typing: `python main.py title=Move_the_car  imag_path=background.png width=640 height=480`
+ -> run game by typing: `python main.py title=Move_the_car  imag_path=background.png width=640 height=480` and make sure you do have all the files on the folder.
 
