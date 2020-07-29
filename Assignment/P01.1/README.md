@@ -9,7 +9,7 @@ This program uses the pygame library to move a car image around window while it 
 
 |   #   | File Link | file Description |
 | :---: | ----------- | ---------------------- |
-|   1   |    main.py     | code that launces the window|
+|   1   |    game.py     | code that launces the window|
 | 2 |Screenshot1.png |image of the window with the car on the road|
 | 3 |Screenshot2.png|image of the window with the car on the left side of the road|
 | 4 |Screenshot3.png|image of the window with the car on the right side bottom cornor road|
@@ -18,5 +18,5 @@ This program uses the pygame library to move a car image around window while it 
  
  ### Instructions to run:
  
- -> run game by typing: `python main.py title=Move_the_car  imag_path=background.png width=640 height=480` and make sure you do have all the files on the folder.
+ -> run game by typing: `python game.py title=Move_the_car  imag_path=background.png width=640 height=480` and make sure you do have all the files on the folder.
 
