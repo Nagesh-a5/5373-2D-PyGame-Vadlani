@@ -29,6 +29,9 @@ class Explosion(pygame.sprite.Sprite):
 				self.rect = self.image.get_rect()
 				self.rect.center = center
 
+	def sss(self):
+		self.kill()
+
 def mykwargs(argv):
 
 	args = []
@@ -84,6 +87,7 @@ def main(**kwargs):
 	flag_r = True
 	flag_u = True
 	flag_d = True
+	flag = False
 
 	while gameLoop:
 		pygame.time.delay(10)
@@ -94,77 +98,50 @@ def main(**kwargs):
 
 		keys = pygame.key.get_pressed() 
 
-		# if keys[pygame.K_LEFT] and x>0:
-		# 	x -= vel 
-		# elif keys[pygame.K_LEFT] and x<=0 and bg_x < 0:
-		# 	bg_x += vel
 
 		if keys[pygame.K_LEFT] and bg_x < int(kwargs['width']) / 2 - 25:
-			bg_x += vel
 			flag_l = True
+			bg_x += vel
 
 		if keys[pygame.K_LEFT] and bg_x >= int(kwargs['width']) / 2 - 25:
 			flag_l = False
-			# bg_x -= vel
-		  
-		# if keys[pygame.K_RIGHT] and x<640-50: 
-		# 	x += vel 
-
-		# if keys[pygame.K_RIGHT] and x>=640-50 and bg_x > -640 * 2: 
-		# 	bg_x -= vel 
 
 		if keys[pygame.K_RIGHT] and  bg_x > -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25:
-			bg_x -= vel
 			flag_r = True
-
+			bg_x -= vel
+			
 		if keys[pygame.K_RIGHT] and  bg_x <= -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25:
 			flag_r = False
-			# bg_x += vel
-		     
-		# if keys[pygame.K_UP] and y>0: 
-		# 	y -= vel 
-
-		# if keys[pygame.K_UP] and y<=0 and bg_y < 0: 
-		# 	bg_y += vel 
 
 		if keys[pygame.K_UP] and bg_y < int(kwargs['height']) / 2 - 15:
 			flag_u = True
 			bg_y += vel
 
 		if keys[pygame.K_UP] and bg_y >= int(kwargs['height']) / 2 - 15:
-			flag_u= False
-			# bg_y -= vel
-
-		# if keys[pygame.K_DOWN] and y<480-30: 
-		# 	y += vel 
-
-		# if keys[pygame.K_DOWN] and y>=480-30 and bg_y > -480 * 2: 
-		# 	bg_y -= vel 
+			flag_u = False
 
 		if keys[pygame.K_DOWN] and bg_y > -int(kwargs['height']) * 2 - int(kwargs['height']) / 2 + 15:
-			bg_y -= vel
 			flag_d = True
+			bg_y -= vel
 
 		if keys[pygame.K_DOWN] and bg_y <= -int(kwargs['height']) * 2 - int(kwargs['height']) / 2 + 15:
 			flag_d = False
-			# bg_y += vel
+
+
 
 		window.fill((0,0,0))
 		window.blit(bg, (bg_x,bg_y))
 		window.blit(car, (int(kwargs['width']) / 2 - 25, int(kwargs['height']) / 2 - 15))
 
 		if flag_l and flag_r and flag_u and flag_d:
-			pass
+			all_sprites = pygame.sprite.Group()
 		else:
-			expl = Explosion((int(kwargs['width']) / 2, int(kwargs['height']) / 2 - 70), explosion)
+			expl = Explosion((int(kwargs['width']) / 2, int(kwargs['height']) / 2 - 30), explosion)
 			all_sprites.add(expl)
 
-			flag_l = True
-			flag_r = True
-			flag_u = True
-			flag_d = True
-			# flag = False
-		# pygame.draw.rect(window, (255, 0, 0), (x, y, width, height)) 
+		if bg_x < int(kwargs['width']) / 2 - 25 and bg_x > -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25 and bg_y < int(kwargs['height']) / 2 - 15 and bg_y > -int(kwargs['height']) * 2 - int(kwargs['height']) / 2 + 15:
+			all_sprites = pygame.sprite.Group()
+
 		all_sprites.update()
 		all_sprites.draw(window)
 		pygame.display.flip()
