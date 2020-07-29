@@ -3,31 +3,6 @@ import os
 import json
 import pprint
 import pygame
-import time
-
-class Explosion(pygame.sprite.Sprite):
-	def __init__(self, center, explosion_anim):
-		pygame.sprite.Sprite.__init__(self)
-		self.explosion_anim = explosion_anim
-		self.image = self.explosion_anim[0]
-		self.rect = self.image.get_rect()
-		self.rect.center = center
-		self.frame = 0
-		self.last_update = pygame.time.get_ticks()
-		self.frame_rate = 50
-
-	def update(self):
-		now = pygame.time.get_ticks()
-		if now - self.last_update > self.frame_rate:
-			self.last_update = now
-			self.frame += 1
-			if self.frame == len(self.explosion_anim):
-				self.kill()
-			else:
-				center = self.rect.center
-				self.image = self.explosion_anim[self.frame]
-				self.rect = self.image.get_rect()
-				self.rect.center = center
 
 def mykwargs(argv):
 
@@ -44,11 +19,8 @@ def mykwargs(argv):
 	return args, kargs
 
 def main(**kwargs):
-	all_sprites = pygame.sprite.Group()
 	print("Printing kwargs from main function")
 	pprint.pprint(kwargs)
-
-	timer = pygame.time.Clock()
 
 	x = int(kwargs['startX'])
 	y = int(kwargs['startY'])
@@ -73,17 +45,7 @@ def main(**kwargs):
 
 	gameLoop = True
 	
-	explosion = []
-	for i in range(15):
-		if i < 9:
-			explosion.append(pygame.image.load("explosion/green_blob_explosion_01_00" + str(i + 1) + ".png").convert_alpha())
-		else:
-			explosion.append(pygame.image.load("explosion/green_blob_explosion_01_0" + str(i + 1) + ".png").convert_alpha())
-
-	flag_l = True
-	flag_r = True
-	flag_u = True
-	flag_d = True
+	
 
 	while gameLoop:
 		pygame.time.delay(10)
@@ -101,11 +63,6 @@ def main(**kwargs):
 
 		if keys[pygame.K_LEFT] and bg_x < int(kwargs['width']) / 2 - 25:
 			bg_x += vel
-			flag_l = True
-
-		if keys[pygame.K_LEFT] and bg_x >= int(kwargs['width']) / 2 - 25:
-			flag_l = False
-			# bg_x -= vel
 		  
 		# if keys[pygame.K_RIGHT] and x<640-50: 
 		# 	x += vel 
@@ -113,13 +70,8 @@ def main(**kwargs):
 		# if keys[pygame.K_RIGHT] and x>=640-50 and bg_x > -640 * 2: 
 		# 	bg_x -= vel 
 
-		if keys[pygame.K_RIGHT] and  bg_x > -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25:
+		if keys[pygame.K_RIGHT] and bg_x > -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25: 
 			bg_x -= vel
-			flag_r = True
-
-		if keys[pygame.K_RIGHT] and  bg_x <= -int(kwargs['width']) * 2 - int(kwargs['width']) / 2 + 25:
-			flag_r = False
-			# bg_x += vel
 		     
 		# if keys[pygame.K_UP] and y>0: 
 		# 	y -= vel 
@@ -128,12 +80,7 @@ def main(**kwargs):
 		# 	bg_y += vel 
 
 		if keys[pygame.K_UP] and bg_y < int(kwargs['height']) / 2 - 15:
-			flag_u = True
 			bg_y += vel
-
-		if keys[pygame.K_UP] and bg_y >= int(kwargs['height']) / 2 - 15:
-			flag_u= False
-			# bg_y -= vel
 
 		# if keys[pygame.K_DOWN] and y<480-30: 
 		# 	y += vel 
@@ -143,31 +90,14 @@ def main(**kwargs):
 
 		if keys[pygame.K_DOWN] and bg_y > -int(kwargs['height']) * 2 - int(kwargs['height']) / 2 + 15:
 			bg_y -= vel
-			flag_d = True
-
-		if keys[pygame.K_DOWN] and bg_y <= -int(kwargs['height']) * 2 - int(kwargs['height']) / 2 + 15:
-			flag_d = False
-			# bg_y += vel
 
 		window.fill((0,0,0))
 		window.blit(bg, (bg_x,bg_y))
 		window.blit(car, (int(kwargs['width']) / 2 - 25, int(kwargs['height']) / 2 - 15))
-
-		if flag_l and flag_r and flag_u and flag_d:
-			pass
-		else:
-			expl = Explosion((int(kwargs['width']) / 2, int(kwargs['height']) / 2 - 70), explosion)
-			all_sprites.add(expl)
-
-			flag_l = True
-			flag_r = True
-			flag_u = True
-			flag_d = True
-			# flag = False
 		# pygame.draw.rect(window, (255, 0, 0), (x, y, width, height)) 
-		all_sprites.update()
-		all_sprites.draw(window)
 		pygame.display.flip()
+
+		# pygame.display.update() 
 
 	pygame.quit()
 
