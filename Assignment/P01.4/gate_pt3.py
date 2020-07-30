@@ -4,7 +4,6 @@ import json
 import pprint
 import pygame
 import time
-import glob
 
 class Explosion(pygame.sprite.Sprite):
 	def __init__(self, center, explosion_anim):
@@ -47,7 +46,6 @@ def mykwargs(argv):
 
 	return args, kargs
 
-
 def main(**kwargs):
 	all_sprites = pygame.sprite.Group()
 	print("Printing kwargs from main function")
@@ -66,19 +64,16 @@ def main(**kwargs):
 	vel = 10
 
 	pygame.init()
-    pygame.mixer.init(buffer=64)
+
 	window = pygame.display.set_mode((int(kwargs['width']), int(kwargs['height'])))
 	pygame.display.set_caption(kwargs['title'])
 
 	bg = pygame.image.load(kwargs['background_image'])
-	bg = pygame.transform.scale(bg, (int(kwargs['width']) * 1, int(kwargs['height']) * 1))
+	bg = pygame.transform.scale(bg, (int(kwargs['width']) * 3, int(kwargs['height']) * 3))
 
 	car = pygame.image.load(kwargs['player_image'])
 	car = pygame.transform.scale(car, (50, 30))
- 
-# Load and play background music. -1 means loop forever
-    #pygame.mixer.music.load('music.mp3')
-    #pygame.mixer.music.play(-1)
+
 	gameLoop = True
 	
 	explosion = []
