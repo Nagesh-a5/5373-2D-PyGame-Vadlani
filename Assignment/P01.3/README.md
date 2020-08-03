@@ -13,8 +13,8 @@ This program uses the pygame library to move a car image around window while the
 | :---: | ----------- | ---------------------- |
 |   1   |    game_pt3.py     | code that launces the window|
 | 2 |Screenshot1.gif |showing the video of how the game running|
-|5|background.png| used image as backgound of the window|
-|6|car.png| used image that moves in the window with the help of keyboard|
+|3|background.png| used image as backgound of the window|
+|4|car.png| used image that moves in the window with the help of keyboard|
 |5|explosion.py| python file that helps the main file|
  
  ### Instructions to run:

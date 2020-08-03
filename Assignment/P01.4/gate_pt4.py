@@ -3,6 +3,10 @@
 from __future__ import division
 import pygame
 import random
+import sys
+import json
+import pprint
+import time
 from os import path
 
 ## assets folder
@@ -26,7 +30,6 @@ BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 ###############################
 
-###############################
 ## to placed in "__init__.py" later
 ## initialize pygame and create window
 pygame.init()
