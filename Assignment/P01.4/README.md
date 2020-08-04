@@ -14,9 +14,8 @@ This program uses the pygame library to move a car image around window while the
 | :---: | ----------- | ---------------------- |
 |   1   |    game_pt4.py     | code that launces the window|
 | 2 |Screenshot1.gif |showing the video of how the game running|
-|3|background-copy.png| used image as backgound of the window|
-|4|car3.png| used image that moves in the window with the help of keyboard|
-|5|sounds| Music files used in the game |
+|3|assets| images and animation used in game|
+|4|sounds| Music files used in the game |
  
  ### Instructions to run:
  
